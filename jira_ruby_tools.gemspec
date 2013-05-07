@@ -21,4 +21,5 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency "mechanize"
   gem.add_runtime_dependency "trollop"
   gem.add_runtime_dependency "highline"
+  gem.add_runtime_dependency "httparty"
 end

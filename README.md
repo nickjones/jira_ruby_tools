@@ -1,9 +1,14 @@
 # JiraRubyTools
 
-TODO: Write a gem description
-
+Assortment of helper methods to manage tickets in bulk on JIRA 4.4 where either an API or the web interface to make these operations doesn't exist.
 ## Installation
+Install the gem normally:
 
+    gem install jira_ruby_tools
+
+Use the new `update_jira` console command to make bulk changes.
+
+### Inclusion in Other Tools
 Add this line to your application's Gemfile:
 
     gem 'jira_ruby_tools'
@@ -12,13 +17,9 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install jira_ruby_tools
-
 ## Usage
 
-TODO: Write usage instructions here
+See `update_jira --help` for command line instructions.
 
 ## Contributing
 

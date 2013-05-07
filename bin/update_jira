@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require 'jira_ruby_tools'
+
+SUB_COMMANDS = JiraRubyTools::sub_commands
+
+opts = Trollop::options do
+  banner <<-EOS
+Manage JIRA 4.x tickets in bulk
+
+Usage:
+  update_jira [global options] subcommand [options]
+
+  Where subcommand is one of #{SUB_COMMANDS.inspect}
+
+Global Options:
+EOS
+  opt :login, "JIRA user for login (will be prompted for a password).  Alternatively, use a cookie.", :type => String
+  opt :cookie, "JIRA logged in session cookie (seraph.rememberme.cookie value).  Alternatively, use login instead.", :type => String
+  opt :server, "(Optional) Set the target server for development purposes in full form (i.e. http://jira)", :default => "http://jira", :type => String
+  stop_on SUB_COMMANDS
+end
+
+cmd = ARGV.shift
+Trollop::die "unknown subcommand #{cmd.inspect}" unless foo.include?(cmd)
+
+# Evaluate the subcommand against the owning module
+JiraRubyTools.modules[SUB_COMMANDS.find_index(cmd)].module_eval('command_line_options')
+
