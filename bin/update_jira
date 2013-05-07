@@ -22,7 +22,8 @@ EOS
 end
 
 cmd = ARGV.shift
-Trollop::die "unknown subcommand #{cmd.inspect}" unless foo.include?(cmd)
+Trollop::die "subcommand required (or --help)" if cmd.nil?
+Trollop::die "unknown subcommand #{cmd.inspect}" unless SUB_COMMANDS.include?(cmd)
 
 # Evaluate the subcommand against the owning module
 JiraRubyTools.modules[SUB_COMMANDS.find_index(cmd)].module_eval('command_line_options')

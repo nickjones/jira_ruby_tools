@@ -6,7 +6,6 @@ module JiraRubyTools
   def self.included(mod)
     @modules ||= []
     @modules << mod
-    puts "Included by #{mod}"
   end
 
   def self.modules
@@ -22,8 +21,8 @@ module JiraRubyTools
 end
 
 # Must occur after definition for registration to work
-Dir.glob('jira_ruby_tools/modules/*.rb') do |file|
-  puts "requiring #{file}"
-  require "jira_ruby_tools/modules/#{File.basename(file)}"
+dir = File.dirname(__FILE__)
+Dir.glob("#{dir}/jira_ruby_tools/modules/*.rb") do |file|
+  require file
 end
 
