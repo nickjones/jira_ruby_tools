@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
+# -*- encoding: utf-8 -*-
 
 require 'jira_ruby_tools'
-require 'pry'
 
 SUB_COMMANDS = JiraRubyTools::sub_commands
 
@@ -43,5 +43,3 @@ end
 
 # Execute subcommand
 JiraRubyTools.modules[SUB_COMMANDS.find_index(cmd)].module_eval('execute_command')
-
-binding.pry

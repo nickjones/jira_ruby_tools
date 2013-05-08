@@ -1,7 +1,7 @@
-#!/usr/bin/env ruby
+# -*- encoding: utf-8 -*-
 
 require 'trollop'
-require 'mechanize'
+require 'jira_ruby_tools/common'
 
 # To-Do:
 # * Add JQL based bulk change support

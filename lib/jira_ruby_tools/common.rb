@@ -1,3 +1,8 @@
+# -*- encoding: utf-8 -*-
+require 'mechanize'
+require 'uri'
+require 'httparty'
+
 module JiraRubyTools
   module Common
     def self.mechanize_agent
