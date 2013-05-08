@@ -2,6 +2,7 @@
 require 'mechanize'
 require 'uri'
 require 'httparty'
+require 'highline/import'
 
 module JiraRubyTools
   module Common

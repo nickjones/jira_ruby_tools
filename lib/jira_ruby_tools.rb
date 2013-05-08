@@ -1,10 +1,4 @@
 # -*- encoding: utf-8 -*-
-require 'mechanize'
-require 'trollop'
-require 'uri'
-require 'highline/import'
-require 'httparty'
-
 require "jira_ruby_tools/version"
 require "jira_ruby_tools/common"
 
@@ -15,7 +9,7 @@ module JiraRubyTools
   # tool.
   def self.included(mod)
     @modules ||= []
-    @modules << mod
+    @modules << mod unless @modules.include?(mod)
   end
 
   def self.modules
