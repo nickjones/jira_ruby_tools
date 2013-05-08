@@ -3,6 +3,9 @@
 require 'trollop'
 require 'mechanize'
 
+# To-Do:
+# * Add JQL based bulk change support
+
 module JiraRubyTools
   module OriginalEstimate
     include JiraRubyTools # Registration
@@ -20,31 +23,19 @@ module JiraRubyTools
       end
     end
 
+    def self.execute_command
+      Trollop::die :issue_key, "must exist" unless @opts[:issue_key_given]
+      Trollop::die :new_time, "must exist" unless @opts[:new_time_given]
+
+      self.change_original_estimate
+    end
+
     def self.change_original_estimate
-      @agent = ::Mechanize.new
-      
-      if @opts[:login_given] && !@opts[:cookie_given]
-        login_page = @agent.get("#{@opts[:server]}/login.jsp")
-        login_form = login_page.form_with(:action=>/login\.jsp/)
-        login_form["os_username"] = @opts[:login]
-        login_form["os_password"] = password = ask("Password: ") {|q| q.echo = false }
-        login_form.checkbox_with(:name=>"os_cookie").check
-        login_form.submit
-        # Grab all of the cookies we got from JIRA
-        cookies = @agent.cookie_jar.cookies(URI.parse(@opts[:server]))
-        # Filter down to just the remember me one for future use.
-        cookies.keep_if{|c| c.name.match(/rememberme/)}
-        puts "Cookie for next time:"
-        puts cookies.first.value
-      else
-        cookie = Mechanize::Cookie.new('seraph.rememberme.cookie', @opts[:cookie])
-        cookie.domain = URI.parse(@opts[:server]).host
-        cookie.path = "/"
-        @agent.cookie_jar.add! cookie
-      end
-      
+      server = JiraRubyTools.server
+      agent = JiraRubyTools::Common.mechanize_agent
+
       ## Grab the issue by it's common name to get the id
-      issue_page = @agent.get("#{@opts[:server]}/browse/#{@opts[:issue_key]}")
+      issue_page = agent.get("#{server}/browse/#{@opts[:issue_key]}")
       
       # Check if we failed auth
       if issue_page.title.match(/Log in/)
@@ -52,11 +43,11 @@ module JiraRubyTools
         exit 1
       end
       
-      edit_page = @agent.click(issue_page.link_with(:text=>/Edit - .*/))
+      edit_page = agent.click(issue_page.link_with(:text=>/Edit - .*/))
       edit_form = edit_page.form_with(:action=>/EditIssue.jspa/)
       edit_form['timetracking'] = @opts[:new_time]
       edit_form.submit
-      puts "Updated timetracking field to #{@opts[:new_time]} for #{@opts[:issue_key]}"
+      puts "JiraRubyTools: Updated timetracking field to #{@opts[:new_time]} for #{@opts[:issue_key]}"
     end
   end
 end

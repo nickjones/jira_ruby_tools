@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'jira_ruby_tools'
+require 'pry'
 
 SUB_COMMANDS = JiraRubyTools::sub_commands
 
@@ -28,3 +29,19 @@ Trollop::die "unknown subcommand #{cmd.inspect}" unless SUB_COMMANDS.include?(cm
 # Evaluate the subcommand against the owning module
 JiraRubyTools.modules[SUB_COMMANDS.find_index(cmd)].module_eval('command_line_options')
 
+JiraRubyTools.server = opts[:server] if opts[:server_given]
+
+Trollop::die :cookie, "must exist" unless opts[:cookie_given] or opts[:login_given]
+Trollop::die :login, "must exist" unless opts[:login_given] or opts[:cookie_given]
+
+# Login
+if opts[:login_given]
+  JiraRubyTools::Common.login_with_password(opts[:login])
+elsif opts[:cookie_given]
+  JiraRubyTools::Common.login_with_cookie(opts[:cookie])
+end
+
+# Execute subcommand
+JiraRubyTools.modules[SUB_COMMANDS.find_index(cmd)].module_eval('execute_command')
+
+binding.pry

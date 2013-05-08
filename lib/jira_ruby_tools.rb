@@ -1,6 +1,15 @@
+require 'mechanize'
+require 'trollop'
+require 'uri'
+require 'highline/import'
+require 'httparty'
+
 require "jira_ruby_tools/version"
+require "jira_ruby_tools/common"
 
 module JiraRubyTools
+  @server = "http://jira/"
+
   # Callback hook for functionality registration.  Used by the command line
   # tool.
   def self.included(mod)
@@ -18,6 +27,15 @@ module JiraRubyTools
     end
   end
 
+  # Change default JIRA instance URI (i.e. http://jira.mycompany.com)
+  def self.server=(server)
+    @server=server
+  end
+
+  # JIRA instance URI (i.e. http://jira.mycompany.com)
+  def self.server
+    @server
+  end
 end
 
 # Must occur after definition for registration to work
