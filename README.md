@@ -1,6 +1,7 @@
 # JiraRubyTools
 
 [![Build Status](https://travis-ci.org/nickjones/jira_ruby_tools.png?branch=master)](https://travis-ci.org/nickjones/jira_ruby_tools)
+[![Dependency Status](https://gemnasium.com/nickjones/jira_ruby_tools.png)](https://gemnasium.com/nickjones/jira_ruby_tools)
 
 Assortment of helper methods to manage tickets in bulk on JIRA 4.4 where either an API or the web interface to make these operations doesn't exist.
 ## Installation

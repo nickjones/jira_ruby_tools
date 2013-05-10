@@ -17,13 +17,13 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_development_dependency "rake"
-  gem.add_development_dependency "rspec"
+  gem.add_development_dependency "rake", ">=0.9.2"
+  gem.add_development_dependency "rspec", "~>2.13.0"
   gem.add_development_dependency "pry"
 
-  gem.add_runtime_dependency "mechanize"
-  gem.add_runtime_dependency "trollop"
-  gem.add_runtime_dependency "highline"
-  gem.add_runtime_dependency "httparty"
-  gem.add_runtime_dependency "json_pure"
+  gem.add_runtime_dependency "mechanize", "~>2.6.0"
+  gem.add_runtime_dependency "trollop", "~>2.0"
+  gem.add_runtime_dependency "highline", "~>1.6.18"
+  gem.add_runtime_dependency "httparty", "~>0.11.0"
+  gem.add_runtime_dependency "json_pure", "~>1.7.7"
 end
