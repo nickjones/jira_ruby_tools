@@ -1,6 +1,7 @@
-require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib/jira_ruby_tools'))
 require 'coveralls'
 Coveralls.wear!
+
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib/jira_ruby_tools'))
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
