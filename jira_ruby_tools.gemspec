@@ -28,5 +28,5 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency "trollop", "~>2.0"
   gem.add_runtime_dependency "highline", "~>1.6.18"
   gem.add_runtime_dependency "httparty", "~>0.11.0"
-  gem.add_runtime_dependency "json_pure", "~>1.7.7"
+  gem.add_runtime_dependency "json_pure", ">=1.7.7"
 end
