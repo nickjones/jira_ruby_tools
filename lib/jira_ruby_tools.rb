@@ -3,8 +3,6 @@ require "jira_ruby_tools/version"
 require "jira_ruby_tools/common"
 
 module JiraRubyTools
-  @server = "http://jira/"
-
   # Callback hook for functionality registration.  Used by the command line
   # tool.
   def self.included(mod)
@@ -29,7 +27,7 @@ module JiraRubyTools
 
   # JIRA instance URI (i.e. http://jira.mycompany.com)
   def self.server
-    @server
+    @server ||= "http://jira/"
   end
 end
 
