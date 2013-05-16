@@ -20,7 +20,7 @@ Gem::Specification.new do |gem|
   gem.post_install_message = "Use 'update_jira' for the CLI tool."
   gem.requirements        << "JIRA 4.x"
 
-  gem.add_development_dependency "rake", ">=0.9.2"
+  gem.add_development_dependency "rake", "~>0.9.2"
   gem.add_development_dependency "rspec", "~>2.13.0"
   gem.add_development_dependency "pry"
 
