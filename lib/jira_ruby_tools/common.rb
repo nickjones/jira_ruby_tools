@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 require 'mechanize'
 require 'uri'
+require 'cgi'
 require 'httparty'
 require 'highline/import'
 
@@ -40,10 +41,10 @@ module JiraRubyTools
     end
 
     def self.issue_list_from_jql(jql)
-      issue_list = HTTParty.get("#{JiraRubyTools.server}/rest/api/2.0.alpha1/search?jql=#{URI.encode(jql)}",
+      issue_list = HTTParty.get("#{JiraRubyTools.server}/rest/api/2.0.alpha1/search?jql=#{CGI.escape(jql)}",
                           :headers => {'Cookie' => self.cookie})
 
-      if issue_list["issues"].length == 0
+      if issue_list.nil? or issue_list["issues"].nil? or issue_list["issues"].length == 0
         return nil
       else
         return issue_list
