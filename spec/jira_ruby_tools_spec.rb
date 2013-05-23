@@ -1,8 +1,8 @@
 require File.expand_path(File.join(File.dirname(__FILE__), 'spec_helper'))
 
 describe JiraRubyTools do
-  specify "default server of 'http://jira/'" do
-    JiraRubyTools.server.should == "http://jira/"
+  specify "default server of 'http://jira'" do
+    JiraRubyTools.server.should == "http://jira"
   end
 
   specify "allows changing the default server" do

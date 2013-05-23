@@ -27,7 +27,7 @@ module JiraRubyTools
 
   # JIRA instance URI (i.e. http://jira.mycompany.com)
   def self.server
-    @server ||= "http://jira/"
+    @server ||= "http://jira"
   end
 end
 
