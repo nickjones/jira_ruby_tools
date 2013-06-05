@@ -4,3 +4,4 @@ source 'https://rubygems.org'
 gemspec
 
 gem "coveralls", "~> 0.6", :require => false, :group => :test
+gem "simplecov", :require => false, :group => :test
