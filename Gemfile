@@ -5,3 +5,4 @@ gemspec
 
 gem "coveralls", "~> 0.6", :require => false, :group => :test
 gem "rdoc-generator-fivefish", :require => false
+gem "simplecov", :require => false, :group => :test

@@ -1,5 +1,7 @@
+require 'simplecov'
 require 'coveralls'
-Coveralls.wear!
+
+SimpleCov.start
 
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib/jira_ruby_tools'))
 

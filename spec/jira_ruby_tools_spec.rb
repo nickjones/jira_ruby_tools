@@ -26,6 +26,14 @@ describe JiraRubyTools do
     JiraRubyTools.modules.should == JiraRubyTools.modules.uniq
   end
 
-  specify "#sub_commands iterates through registered modules calling the #sub_commands method"
+  specify "#sub_commands iterates through registered modules calling the #sub_commands method" do
+    pending "module stubbing for sub_command method isn't working" do
+    modules = []
+    modules.push(module FooOne; def self.sub_command; return 'foo_one'; end; end)
+    modules.push(module FooTwo; def self.sub_command; return 'foo_two'; end; end)
+    JiraRubyTools.stub!(:modules).and_return(modules)
+    JiraRubyTools.sub_commands.should == ['foo_one', 'foo_two']
+    end
+  end
 
 end
