@@ -11,7 +11,8 @@ Rake::RDocTask.new do |rdoc|
 
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title = "JiraRubyTools #{version}"
-  rdoc.generator = "fivefish"
+# Doesn't work with jruby
+#  rdoc.generator = "fivefish"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
